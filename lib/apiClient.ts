@@ -15,18 +15,10 @@ if (!baseURL) {
 
 // define the api
 const apiClient = create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://bulk-account-project.onrender.com/",
   headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
 });
 
-// apiClient.addAsyncRequestTransform(async (request) => {
-//   const token = getAuthToken();
-//   if (token) {
-//     request.headers = {
-//       ...request.headers,
-//       Authorization: `Bearer ${token}`,
-//     };
-//   }
-// });
+
 
 export default apiClient;

@@ -1,7 +1,5 @@
-import Login from "./Login";
+import HomeClient from "./HomeClient";
 
 export default function Home() {
-  return (
-   <Login />
-  );
+  return <HomeClient />;
 }
