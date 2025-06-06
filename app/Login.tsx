@@ -125,14 +125,9 @@ const Login = () => {
                 <Button disabled={isSubmitting ? true : false}>
                   {isSubmitting ? "Loading..." : "Log In"}
                 </Button>
-
-                <div className="flex items-center text-xs">
-                  <p>Don&apos;t have an account?</p>
-                  <Link href="/get-started">
-                    {" "}
-                    <p className="text-[#009832]  px-2">Get Started</p>
-                  </Link>
-                </div>
+                <Link className="w-full flex items-center justify-center" href="/">
+                  <Button variant="ghost">Cancel</Button>
+                </Link>
               </Form>
             )}
           </Formik>

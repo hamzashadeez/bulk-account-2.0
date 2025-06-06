@@ -26,7 +26,7 @@ function HeaderRightControls() {
         <ShoppingCart size={23} />
       </Link> */}
 
-      <Link href="/profile" className="hidden md:flex">
+      <Link href="/login" className="hidden md:flex">
         <UserRound size={23} />
       </Link>
 
@@ -58,9 +58,8 @@ function HeaderRightControls() {
                   <Link className="bg-gray-100 p-2" href="/login">
                     Admin
                   </Link>
-                 
 
-                    <Drawer.Close className="text-2xl cursor-pointer">
+                  <Drawer.Close className="text-2xl cursor-pointer">
                     <div className="h-10 bg-[#EB4374] rounded-md flex items-center justify-center text-sm text-white">
                       Close
                     </div>
