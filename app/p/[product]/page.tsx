@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import apiClient from "@/lib/apiClient";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 // import { EditProduct } from "./EditProduct";
@@ -21,10 +22,15 @@ function SingleProduct() {
   }, []);
   console.log(product);
   return (
-    <div className="w-5/6 mx-auto my-10">
-      <h2 className="text-lg mb-5 uppercase font-medium text-green-700">
+    <div className="w-5/6 md:w-3/5 mx-auto mb-10">
+      <img src="/banner.jpg" alt="" className="w-full" />
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg my-5 uppercase font-medium text-green-700">
         Account Details
       </h2>
+
+      <Link className="text-sm bg-gray-200 my-5 uppercase font-medium text-gray-700 px-4 py-1.5" href="/">Home</Link>
+      </div>
       <h1 className="">
         Platform:{" "}
         <span className="font-semibold text-green-700 text-lg uppercase">
@@ -50,12 +56,17 @@ function SingleProduct() {
         </span>
       </p>
 
-      <div className="mt-10 flex gap-6 items-center justify-center">
-        {/* <EditProduct data={productData} /> */}
-        <Button className="cursor-pointer" variant={"destructive"}>
-          Delete
-        </Button>
-      </div>
+      <section className="my-10 py-5 bg-blue-100 rounded-md px-5">
+        Please note that the price is negotiable, and you can contact us for more information.
+        <br />
+        Use the account details below to make the purchase:
+        <br />
+        <br />
+
+        After making the payment, please send us a screenshot of the transaction to our WhatsApp number:
+        <br />
+      </section>
+     
     </div>
   );
 }
