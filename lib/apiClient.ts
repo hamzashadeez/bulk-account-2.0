@@ -13,7 +13,7 @@ if (!baseURL) {
   console.error('API base URL is not defined');
 }
 
-// define the api
+// define the api 
 const apiClient = create({
   baseURL: "https://bulk-account-project.onrender.com/",
   headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
