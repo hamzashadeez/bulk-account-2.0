@@ -9,6 +9,7 @@ import React, { useEffect } from "react";
 function SingleProduct() {
   const { product } = useParams();
   const [productData, setProductData]: any = React.useState(null);
+  const [user, setUser]: any = React.useState(null);
   const getProduct = async () => {
     const res: any = await apiClient.get(`/product/${product}`);
     if (res.ok) {
@@ -20,7 +21,21 @@ function SingleProduct() {
   useEffect(() => {
     getProduct();
   }, []);
-  console.log(product);
+
+  const getUserDetails = async () => {
+    const res: any = await apiClient.get(`/user`);
+    if (res.ok) {
+      console.log(res.data);
+      setUser(res.data);
+    }
+  }
+
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
+ 
   return (
     <div className="w-5/6 md:w-3/5 mx-auto mb-10">
       <img src="/banner.jpg" alt="" className="w-full" />
@@ -60,10 +75,15 @@ function SingleProduct() {
         Please note that the price is negotiable, and you can contact us for more information.
         <br />
         Use the account details below to make the purchase:
-        <br />
-        <br />
 
-        After making the payment, please send us a screenshot of the transaction to our WhatsApp number:
+        <br />
+        <br />
+        <span className="font-semibold">Account Name: {user?.accountName}</span><br /><br />
+        <span className="font-semibold">Bank Name: {user?.bank}</span><br /><br />
+        <span className="font-semibold">Account Number: {user?.accountNumber}</span><br /><br /><br />
+        After making the payment, please send us a screenshot of the transaction to our WhatsApp number:<br />
+        <span className="font-semibold">{user?.phone}</span>
+
         <br />
       </section>
      

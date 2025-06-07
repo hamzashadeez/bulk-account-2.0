@@ -38,6 +38,10 @@ const data = {
           title: "Payment Details",
           url: "/dashboard/user",
         },
+        {
+          title: "Back Home",
+          url: "/",
+        },
       ],
     },
   
