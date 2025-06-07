@@ -34,6 +34,10 @@ const data = {
           title: "All Products",
           url: "/dashboard/all",
         },
+        {
+          title: "Payment Details",
+          url: "/dashboard/user",
+        },
       ],
     },
   
