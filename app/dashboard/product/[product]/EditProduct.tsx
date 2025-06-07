@@ -25,6 +25,7 @@ import { Select } from "@radix-ui/react-select";
 import { Formik } from "formik";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import EditFollowers from "./EditFollowers";
 
 export function EditProduct({ data }: any) {
   const [followers, setFollowers] = useState(data?.followers );
@@ -69,19 +70,8 @@ export function EditProduct({ data }: any) {
           <SheetTitle>Edit Product</SheetTitle>
         </SheetHeader>
         <div className="grid flex-1 auto-rows-min gap-6 px-4">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
-            <div className="mt-1 ">
-              <label className="text-sm" htmlFor="followers">
-                Followers
-              </label>
-              <Input
-                id="followers"
-                name="followers"
-                onChange={(e) => setFollowers(e.target.value)}
-                value={followers}
-                placeholder="No. of Followers"
-              />
-            </div>
+          <div  className="flex flex-col gap-4 ">
+            <EditFollowers setFollowers={setFollowers} followers={followers} />
 
             <div className="mt-1 ">
               <label className="text-sm" htmlFor="following">
@@ -159,7 +149,7 @@ export function EditProduct({ data }: any) {
             <Button className="cursor-pointer" type="submit">
               {"Update Product"}
             </Button>
-          </form>
+          </div>
         </div>
         <SheetFooter>
           <SheetClose asChild>
