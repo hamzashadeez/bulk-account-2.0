@@ -9,16 +9,15 @@ export async function POST(request: NextRequest) {
     
     const response = NextResponse.json(
       {
-        message: "Successfully Logged In",
-        token,
+      message: "Successfully Logged In",
+      token,
       },
       {
-        status: 201,
-        headers: {
-          "Set-Cookie": `token=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${
-            60 * 60 * 12 * 7 * 1000 // 7 days in milliseconds
-          }`,
-        },
+      status: 201,
+      headers: {
+        // Set Max-Age to a very large value (e.g., 100 years in seconds)
+        "Set-Cookie": `token=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${60 * 60 * 24 * 365 * 100}`,
+      },
       }
     );
     return response;
