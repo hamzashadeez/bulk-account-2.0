@@ -160,6 +160,14 @@ const Register = () => {
                   {isSubmitting ? "Loading..." : "Register"}
                 </Button>
                 <Link
+                  className="w-full flex items-center cursor-pointer justify-center"
+                  href="/u/login"
+                >
+                  <Button variant="outline" className="w-full">
+                    Login
+                  </Button>
+                </Link>
+                <Link
                   className="w-full flex items-center justify-center"
                   href="/"
                 >

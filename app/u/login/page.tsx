@@ -15,7 +15,7 @@ const UserLogin = () => {
   const router = useRouter();
   const handleSubmit = async (values: any) => {
     console.log(values);
-    const response: any = await apiClient.post("auth/login", values);
+    const response: any = await apiClient.post("customer/login", values);
     if (response.ok) {
       const token = response.data?.data?.token;
       console.log(token, "======");
@@ -31,7 +31,7 @@ const UserLogin = () => {
         .then((response) => response.json())
         .then((data) => {
           toast.success("Logged in Successfully");
-          router.push("/dashboard");
+          router.push("/user-dashboard");
         })
         .catch((error) => console.error(error));
     } else {
