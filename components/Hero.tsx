@@ -1,3 +1,5 @@
+"use client";
+import Link from "next/link";
 import React from "react";
 
 function Hero() {
@@ -15,12 +17,12 @@ function Hero() {
       </h1>
 
       <div className="flex gap-3 md:gap-6 mt-5 z-20 items-center justify-center">
-        <button className="bg-[#44D2D6] text-white px-8 py-3 rounded-full text-sm md:text-lg font-semibold hover:bg-[#36b8bb] transition-colors">
+        <Link href={"/u/login"} className="bg-[#44D2D6] text-white px-8 py-3 rounded-full text-sm md:text-lg font-semibold hover:bg-[#36b8bb] transition-colors">
           Buy Now
-        </button>
-        <button className="bg-[#EB4374] text-white px-8 py-3 rounded-full text-sm md:text-lg font-semibold hover:bg-[#d33c6e] transition-colors">
+        </Link>
+        <Link href={"/u/login"} className="bg-[#EB4374] text-white px-8 py-3 rounded-full text-sm md:text-lg font-semibold hover:bg-[#d33c6e] transition-colors">
           Explore
-        </button>
+        </Link>
       </div>
     </div>
   );

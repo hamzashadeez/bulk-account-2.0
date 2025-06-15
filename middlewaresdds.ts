@@ -128,7 +128,7 @@
 //       const response = isApiProtected
 //         ? NextResponse.json({ message: "Invalid or expired token" }, { status: 401 })
 //         : NextResponse.redirect(new URL("/", req.url));
-      
+
 //       response.cookies.delete("token"); // Always delete invalid token
 //       return response;
 //     }
@@ -139,7 +139,7 @@
 //     const response = isApiProtected
 //       ? NextResponse.json({ message: "Invalid or expired token" }, { status: 401 })
 //       : NextResponse.redirect(new URL("/", req.url));
-    
+
 //     response.cookies.delete("token"); // Always delete the problematic token
 //     return response;
 //   }
@@ -154,9 +154,8 @@
 
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { verifyJwt } from "./lib/jwt";
 
-const protectedPages = ["/dashboard",]; 
+const protectedPages = ["/dashboard", "/u"];
 
 interface CustomNextRequest extends NextRequest {
   user: any;
@@ -164,66 +163,23 @@ interface CustomNextRequest extends NextRequest {
 
 export async function middleware(req: CustomNextRequest) {
   const token = req.cookies.get("token")?.value;
+  const aaa = req.cookies.get("aaa")?.value;
 
-  if (!token) {
-    // No token found, user is not signed in
-    if (req.nextUrl.pathname.startsWith("/api/v1")) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-    }
+  
+  if (req.nextUrl.pathname.startsWith("/dashboard") && !token) {
+    console.log("no user");
+    return NextResponse.redirect(new URL("/login", req.url));
+  } else return NextResponse.next();
 
-    // Check if the request is for a protected page
-    // if (protectedPages.includes(req.nextUrl.pathname)) {
-      if (req.nextUrl.pathname.startsWith("/dashboard")) {
-   
-    // Redirect to login page
-      return NextResponse.redirect(new URL("/", req.url));
-    }
 
-    return NextResponse.next();
-  }
 
-  try {
-    const decoded:any = await verifyJwt(token);
+  // if (!aaa) {
+  //   if (req.nextUrl.pathname.startsWith("/user-dashboard")) {
+  //     return NextResponse.redirect(new URL("/u/login", req.url));
+  //   }
 
-    if (decoded) {
-      // Valid token, user is signed in
-      // You can attach user data to the request headers for later use
-      req.headers.set("user", JSON.stringify(decoded));
-      
-     
-
-      return NextResponse.next();
-    } else {
-      // Invalid or expired token
-      // Delete the invalid cookie
-      const response = NextResponse.next();
-      response.cookies.delete("token");
-
-      if (req.nextUrl.pathname.startsWith("/api/v1")) {
-        return NextResponse.json(
-          { message: "Invalid or expired token" },
-          { status: 401 }
-        );
-      }
-
-      // Redirect to login page
-      return NextResponse.redirect(new URL("/", req.url));
-    }
-  } catch (error) {
-    // Error during verification (e.g., JWT library error)
-    const response = NextResponse.next();
-    response.cookies.delete("token");
-
-    if (req.nextUrl.pathname.startsWith("/api/v1")) {
-      return NextResponse.json(
-        { message: "Invalid or expired token" },
-        { status: 401 }
-      );
-    }
-
-    // Redirect to login page
-    return NextResponse.redirect(new URL("/", req.url));
-  }
+  //   return NextResponse.next();
+  // }
 }
 
 export const config = {

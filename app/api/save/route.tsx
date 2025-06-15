@@ -24,3 +24,16 @@ export async function POST(request: NextRequest) {
 // coment
   
 }
+
+export async function DELETE() {
+  const response = NextResponse.json(
+    { message: "Token deleted" },
+    {
+      status: 200,
+      headers: {
+        "Set-Cookie": "token=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0",
+      },
+    }
+  );
+  return response;
+}
