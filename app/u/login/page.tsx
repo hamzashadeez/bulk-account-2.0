@@ -125,7 +125,18 @@ const UserLogin = () => {
                 <Button disabled={isSubmitting ? true : false}>
                   {isSubmitting ? "Loading..." : "Log In"}
                 </Button>
-                <Link className="w-full flex items-center justify-center" href="/">
+                <Link
+                  className="w-full flex items-center cursor-pointer justify-center"
+                  href="/u/register"
+                >
+                  <Button variant="outline" className="w-full">
+                    Register
+                  </Button>
+                </Link>
+                <Link
+                  className="w-full flex items-center justify-center"
+                  href="/"
+                >
                   <Button variant="ghost">Cancel</Button>
                 </Link>
               </Form>

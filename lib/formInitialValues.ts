@@ -2,6 +2,12 @@ export const loginInitialValues = {
     email: "",
     password: "",
 }
+export const registerInitialValues = {
+    email: "",
+    password: "",
+    fullname: "",
+    phone: "",
+}
 
 export const detailsInitialValues = {
     firstName: "",

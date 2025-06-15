@@ -2,8 +2,8 @@
 import { Form, Formik } from "formik";
 import React from "react";
 import Link from "next/link";
-import { loginInitialValues } from "@/lib/formInitialValues";
-import { loginValidationSchema } from "@/lib/formValidations";
+import { registerInitialValues } from "@/lib/formInitialValues";
+import { registerValidationSchema } from "@/lib/formValidations";
 import apiClient from "@/lib/apiClient";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ const Register = () => {
   const router = useRouter();
   const handleSubmit = async (values: any) => {
     console.log(values);
-    const response: any = await apiClient.post("auth/login", values);
+    const response: any = await apiClient.post("customer", values);
     if (response.ok) {
       const token = response.data?.data?.token;
       console.log(token, "======");
@@ -31,7 +31,7 @@ const Register = () => {
         .then((response) => response.json())
         .then((data) => {
           toast.success("Logged in Successfully");
-          router.push("/dashboard");
+          router.push("/user-dashboard");
         })
         .catch((error) => console.error(error));
     } else {
@@ -63,8 +63,8 @@ const Register = () => {
         </div>
         <div className="">
           <Formik
-            initialValues={loginInitialValues}
-            validationSchema={loginValidationSchema}
+            initialValues={registerInitialValues}
+            validationSchema={registerValidationSchema}
             onSubmit={(values: any) => handleSubmit(values)}
           >
             {({
@@ -102,6 +102,40 @@ const Register = () => {
                     {errors.email && touched.email && String(errors.email)}
                   </p>
                 </div>
+                <div className="">
+                  <label className="text-sm" htmlFor="fullname">
+                    Enter Full Name
+                  </label>
+                  <Input
+                    id="fullname"
+                    name="fullname"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.fullname}
+                    placeholder="Full Name"
+                  />
+                  <p className="text-red-500 text-xs">
+                    {errors.fullname &&
+                      touched.fullname &&
+                      String(errors.fullname)}
+                  </p>
+                </div>
+                <div className="mb-2">
+                  <label className="text-sm" htmlFor="phone">
+                    Enter Phone Number
+                  </label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.phone}
+                    placeholder="Phone Number"
+                  />
+                  <p className="text-red-500 text-xs">
+                    {errors.phone && touched.phone && String(errors.phone)}
+                  </p>
+                </div>
                 <div className="mb-2">
                   <label className="text-sm" htmlFor="password">
                     Enter Password
@@ -123,9 +157,12 @@ const Register = () => {
                 </div>
 
                 <Button disabled={isSubmitting ? true : false}>
-                  {isSubmitting ? "Loading..." : "Log In"}
+                  {isSubmitting ? "Loading..." : "Register"}
                 </Button>
-                <Link className="w-full flex items-center justify-center" href="/">
+                <Link
+                  className="w-full flex items-center justify-center"
+                  href="/"
+                >
                   <Button variant="ghost">Cancel</Button>
                 </Link>
               </Form>
