@@ -4,27 +4,27 @@ import { CircleCheck, Loader, ShoppingCart } from "lucide-react";
 import React, { useEffect } from "react";
 
 function UserDashboard() {
-  // const [user, setUser] = React.useState<any>(null);
-  // const getUser = () => {
-  //   const user: any = localStorage.getItem("user");
-  //   if (!user) {
-  //     window.location.href = "/u/login";
-  //   }
-  //   const userData = JSON.parse(user);
-  //   setUser(userData);
-  // }
+  const [user, setUser] = React.useState<any>(null);
+  const getUser = () => {
+    const user: any = localStorage.getItem("user");
+    if (!user) {
+      window.location.href = "/u/login";
+    }
+    const userData = JSON.parse(user);
+    setUser(userData);
+  }
 
-  // useEffect(()=>{
-  //   getUser();
-  // }, [])
+  useEffect(()=>{
+    getUser();
+  }, [])
   return (
     <main className="min-h-screen w-full bg-gray-100 w-full">
       <div className="min-h-screen w-full  p-5 md:p-10 md:w-2/3 lg:w-1/2 mx-auto">
         <header>
-          <h1 className="text-2xl font-bold text-gray-800">User Dashboard</h1>
+          <h1 className="text-2xl font-bold text-gray-800">{user?.fullname}</h1>
           <p className="text-gray-600">
             Welcome to your dashboard. Here you can manage your account
-            settings, view your activity, and more.
+            orders, view your activity, and more.
           </p>
         </header>
 
