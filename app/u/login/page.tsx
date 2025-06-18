@@ -17,25 +17,10 @@ const UserLogin = () => {
     console.log(values);
     const response: any = await apiClient.post("customer/login", values);
     if (response.ok) {
-      const token = response.data?.data?.token;
-      console.log(token, "======");
-      fetch("/api/save", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          token,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          toast.success("Logged in Successfully");
-          router.push("/user-dashboard");
-        })
-        .catch((error) => console.error(error));
+      localStorage.setItem("user", JSON.stringify(response.data.customer));
+      toast.success("Logged in Successfully");
+      router.push("/user-dashboard");
     } else {
-      console.log(response);
       toast.error(response.data.error || "Something went wrong", {
         position: "top-right",
         autoClose: 3000,
